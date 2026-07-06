@@ -73,15 +73,16 @@ document.querySelectorAll('.faq-question').forEach(question => {
   });
 });
 
-// Pre-fill contact form when arrived via ?demo=1 (from link-in-bio "Get Free Demo" card)
+// Pre-fill contact form when arrived via ?demo=1 or ?check=1 (from link-in-bio cards)
 (function initDemoPreFill() {
-  if (new URLSearchParams(window.location.search).get('demo') !== '1') return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('demo') !== '1' && params.get('check') !== '1') return;
 
   const bookingSection = document.getElementById('booking');
   const messageField   = document.querySelector('#contact-form [name="message"]');
 
   if (messageField && !messageField.value) {
-    messageField.value = "I'd like to see a free demo video for my business.";
+    messageField.value = "I'd like the free books health check for my business.";
   }
 
   if (bookingSection) {
